@@ -1,0 +1,6 @@
+@Dueto_HostAddress = http://localhost:5001
+
+GET {{Dueto_HostAddress}}/task/
+Accept: application/json
+
+###
