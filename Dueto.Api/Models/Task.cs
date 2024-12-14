@@ -2,7 +2,7 @@
 
 public class Task
 {
-    public string Id { get; }
+    public string Id { get; set; }
     public string Text { get; set; }
     public string Color { get; set; }
     public string Type { get; set; }
@@ -23,6 +23,6 @@ public class Task
 
     public Task()
     {
-        Id = Guid.NewGuid().ToString();
+        Id ??= Guid.NewGuid().ToString();
     }
 }
