@@ -1,6 +1,6 @@
-﻿namespace Dueto.Api.Models;
+﻿namespace DueTo.Domain.Models;
 
-public class Task
+public class TaskModel
 {
     public string Id { get; set; }
     public string Text { get; set; }
@@ -10,7 +10,7 @@ public class Task
     public bool IsDone { get; set; }
     public List<Day> ActiveDays { get; set; }
     
-    public Task(string text, string color, string type, string priority, bool isDone, List<Day> activeDays)
+    public TaskModel(string text, string color, string type, string priority, bool isDone, List<Day> activeDays)
     {
         Id = Guid.NewGuid().ToString();
         Text = text;
@@ -21,7 +21,7 @@ public class Task
         ActiveDays = activeDays;
     }
 
-    public Task()
+    public TaskModel()
     {
         Id ??= Guid.NewGuid().ToString();
     }

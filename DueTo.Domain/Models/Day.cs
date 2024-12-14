@@ -1,4 +1,4 @@
-﻿namespace Dueto.Api.Models;
+﻿namespace DueTo.Domain.Models;
 
 public enum Day
 {
