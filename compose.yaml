@@ -1,6 +1,23 @@
 ﻿services:
   Dueto.Api:
     image: dueto.api
+    ports:
+      - "8080:8080"
     build:
       context: .
       dockerfile: Dueto.Api/Dockerfile
+  DueTo.Database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: DueTo_Database
+    ports: 
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=DuEtO!PaSs
+      - MSSQL_PID=Developer
+    volumes:
+      - mssql_data:/var/opt/mssql
+    
+    
+volumes:
+  mssql_data:
