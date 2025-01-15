@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using static System.Net.HttpStatusCode;
 using static Microsoft.AspNetCore.Http.Results;
 using DueTo.Service;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
