@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using DueTo.Domain.Models;
+using Microsoft.Data.SqlClient;
 
 namespace DueTo.Repository;
 
@@ -43,6 +44,27 @@ public class TaskRepository
 
     public Task<List<TaskModel>> GetAllTasks()
     {
+        using var connection = Connection.GetConnection();
+        string query = "SELECT * FROM Tasks";
+        using var command = new SqlCommand(query, connection);
+        using var reader = command.ExecuteReader();
+        List<TaskModel> tasks = new List<TaskModel>();
+        
+        while (reader.Read())
+        {
+            var task = new TaskModel
+            {
+                Id = reader.GetString(reader.GetOrdinal("Id")),
+                Text = reader.GetString(reader.GetOrdinal("Text")),
+                Type = reader.GetString(reader.GetOrdinal("Type")),
+                Priority = reader.GetString(reader.GetOrdinal("Priority")),
+                IsDone = reader.GetBoolean(reader.GetOrdinal("IsDone")),
+                ActiveDays = new List<Day>(reader.GetInt32(reader.GetOrdinal("ActiveDays")))
+            };
+            tasks.Add(task);
+        };
+        connection.Close();
+        reader.Close();
         return Task.FromResult(tasks);
     }
 

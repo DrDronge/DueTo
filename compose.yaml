@@ -1,12 +1,16 @@
 ﻿services:
   Dueto.Api:
+    container_name: DueTo.Api
     image: dueto.api
     ports:
       - "8080:8080"
     build:
       context: .
       dockerfile: Dueto.Api/Dockerfile
+    networks:
+      - app-network
   DueTo.Database:
+    env_file: ".env"
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: DueTo_Database
     ports: 
@@ -17,7 +21,13 @@
       - MSSQL_PID=Developer
     volumes:
       - mssql_data:/var/opt/mssql
+    networks:
+      - app-network
     
     
 volumes:
   mssql_data:
+    
+networks:
+  app-network:
+    driver: bridge
