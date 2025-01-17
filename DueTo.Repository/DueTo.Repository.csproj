@@ -10,4 +10,8 @@
       <ProjectReference Include="..\DueTo.Domain\DueTo.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.0" />
+    </ItemGroup>
+
 </Project>
