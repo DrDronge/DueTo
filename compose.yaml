@@ -10,7 +10,6 @@
     networks:
       - app-network
   DueTo.Database:
-    env_file: ".env"
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: DueTo_Database
     ports: 
