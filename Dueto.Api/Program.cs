@@ -22,6 +22,16 @@ Connection.SetConfiguration(builder.Configuration);
 builder.Configuration
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowScalarOrigin", policy =>
+    {
+        policy.WithOrigins("http://localhost:8080")  // Allow Scalar's origin
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,11 +43,13 @@ if (app.Environment.IsDevelopment())
         options
             .WithTitle("DueTo")
             .WithTheme(ScalarTheme.DeepSpace)
-            .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+            .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient)
+            .AddServer("http://localhost:8080");
     });
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
+app.UseCors("AllowScalarOrigin");
 
 
 

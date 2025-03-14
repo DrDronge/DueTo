@@ -13,7 +13,7 @@ public class TaskService(TaskRepository repository)
 
     public async Task<List<TaskModel>> GetAllTasks()
     {
-        return await repository.GetAllTasks();
+        return await repository.GetAllTasksAsync();
     }
 
     public async Task<TaskModel> GetTaskById(string id)
@@ -21,12 +21,12 @@ public class TaskService(TaskRepository repository)
         return await repository.GetTaskById(id);
     }
 
-    public HttpStatusCode CreateTask(TaskModel task)
+    public TaskModel CreateTask(TaskModel task)
     {
         return repository.CreateTask(task);
     }
 
-    public TaskModel UpdateTaskById(TaskModel task)
+    public Task<TaskModel> UpdateTaskById(TaskModel task)
     {
         return repository.UpdateTaskById(task);
     }
