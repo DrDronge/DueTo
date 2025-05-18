@@ -10,16 +10,15 @@
     networks:
       - app-network
   DueTo.Database:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mongo
     container_name: DueTo_Database
     ports: 
-      - "1433:1433"
+      - "27017:27017"
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=DuEtO!PaSs
-      - MSSQL_PID=Developer
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
-      - mssql_data:/var/opt/mssql
+      - mongo_data:/var/opt/mongo
     networks:
       - app-network
     
