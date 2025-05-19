@@ -2,6 +2,7 @@ using System.Net;
 using System.Text.Json;
 using DueTo.Domain.Models;
 using DueTo.Repository;
+using DueTo.Repository.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
 using static System.Net.HttpStatusCode;
 using static Microsoft.AspNetCore.Http.Results;
@@ -16,6 +17,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSingleton<TaskRepository>();
 builder.Services.AddScoped<TaskService>();
 builder.Services.AddSingleton<Connection>();
+builder.Services.AddSingleton<IMongoDbContext, MongoDbContext>();
 
 Connection.SetConfiguration(builder.Configuration);
 
@@ -56,7 +58,7 @@ app.UseCors("AllowScalarOrigin");
 app.MapGet("/task", (string dayOfWeek, TaskService taskService) => Ok(taskService.GetTaskByDay(dayOfWeek)))
     .WithName("GetTasksByDay");
 
-app.MapGet("/allTasks", (TaskService taskService) => taskService.GetAllTasks()).WithName("GetAllTasks");
+app.MapGet("/allTasks", (TaskService taskService) => taskService.GetAllAsync()).WithName("GetAllTasks");
 
 app.MapGet("/taskbyid", (string id, TaskService taskService) => taskService.GetTaskById(id)).WithName("GetTaskById");
 

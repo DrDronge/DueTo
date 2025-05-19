@@ -13,10 +13,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Models\"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\DueTo.Domain\DueTo.Domain.csproj"/>
         <ProjectReference Include="..\DueTo.Service\DueTo.Service.csproj" />
     </ItemGroup>

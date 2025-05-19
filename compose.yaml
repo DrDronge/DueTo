@@ -7,6 +7,8 @@
     build:
       context: .
       dockerfile: Dueto.Api/Dockerfile
+    environment:
+      - MONGO_URI=mongodb://admin:password@DueTo.Database:27017/admin
     networks:
       - app-network
   DueTo.Database:
@@ -21,10 +23,10 @@
       - mongo_data:/var/opt/mongo
     networks:
       - app-network
-    
+
     
 volumes:
-  mssql_data:
+  mongo_data:
     
 networks:
   app-network:
