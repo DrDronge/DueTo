@@ -1,7 +1,6 @@
-﻿using DueTo.Domain.Models;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace Dueto.Api.Models;
+namespace DueTo.Domain.Models;
 
 public class TaskDto
 {

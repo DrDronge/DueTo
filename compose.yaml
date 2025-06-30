@@ -8,9 +8,13 @@
       context: .
       dockerfile: Dueto.Api/Dockerfile
     environment:
-      - MONGO_URI=mongodb://admin:password@DueTo.Database:27017/admin
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MONGO_URI=mongodb://admin:password@DueTo_Database:27017/dueto?authSource=admin
     networks:
       - app-network
+    depends_on:
+      DueTo.Database:
+        condition: service_healthy
   DueTo.Database:
     image: mongo
     container_name: DueTo_Database
@@ -19,10 +23,18 @@
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: dueto
     volumes:
-      - mongo_data:/var/opt/mongo
+      - mongo_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--quiet"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
     
 volumes:

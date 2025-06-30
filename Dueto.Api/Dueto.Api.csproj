@@ -16,11 +16,21 @@
         <ProjectReference Include="..\DueTo.Domain\DueTo.Domain.csproj"/>
         <ProjectReference Include="..\DueTo.Service\DueTo.Service.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 
     <ItemGroup>
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\" />
     </ItemGroup>
 
 </Project>

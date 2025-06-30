@@ -1,4 +1,5 @@
-﻿namespace DueTo.Domain.Models;
+﻿
+namespace DueTo.Domain.Models;
 
 public enum Day
 {
