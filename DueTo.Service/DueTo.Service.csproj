@@ -11,4 +11,8 @@
       <ProjectReference Include="..\DueTo.Repository\DueTo.Repository.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="obj\Debug\net9.0\" />
+    </ItemGroup>
+
 </Project>
