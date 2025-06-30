@@ -2,7 +2,7 @@
 
 namespace DueTo.Repository.Interfaces;
 
-public class IMongoDbContext
+public interface IMongoDbContext
 {
     public IMongoDatabase Database { get; }
 }
