@@ -1,2 +1,23 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+
+<script lang="ts">
+    import TaskList from '../components/TaskList.svelte';
+    import type {TaskDto} from "../components/TaskCard.svelte";
+
+    const tasks: TaskDto[] = [
+        {
+            id: '1',
+            text: 'Do something',
+            color: '#22d3ee',
+            type: 'Development',
+            priority: 'high', // ✅ OK
+            isDone: false,
+            activeDays: [
+                { id: 1, label: 'Mon' },
+                { id: 2, label: 'Tue' }
+            ]
+        }
+    ];
+
+</script>
+
+<TaskList {tasks} />
